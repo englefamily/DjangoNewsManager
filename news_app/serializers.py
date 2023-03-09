@@ -10,7 +10,7 @@ def post_serializer(post:NewsPost):
     }
 
 
-class PostSerializer(serializers.Serializer):
+class PostSerializer1(serializers.Serializer):
     headline = serializers.CharField(max_length=20)
     content = serializers.CharField(max_length=2000)
     post_date = serializers.DateTimeField()
@@ -26,4 +26,11 @@ class PostSerializer(serializers.Serializer):
         instance.save()
         return instance
 
+
+class PostSerializer(serializers.ModelSerializer):
+    content = serializers.CharField(max_length=2000, required=False)
+
+    class Meta:
+        model = Post
+        fields = "__all__"
 
